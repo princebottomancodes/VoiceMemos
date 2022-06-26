@@ -1,8 +1,9 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
 import 'package:localstore/localstore.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sliding_panel/sliding_panel.dart';
@@ -122,51 +123,52 @@ class _AllRecordingsScreenState extends State<AllRecordingsScreen> {
                     ],
                 body: Padding(
                   padding: const EdgeInsets.only(bottom: 100),
-                  child: RecordListView(records: records, editState: isEditMode),
+                  child:
+                      RecordListView(records: records, editState: isEditMode),
                 )),
             //
             // SlidingUpPanelWidget(
             //     child: Column(
             //       children: <Widget>[
-                    
+
             //       ],
             //     ),
             //     controlHeight: 200,
             //     // MediaQuery.of(context).size.height,
             //     panelController: panelController)
             SlidingPanel(
-  panelController: panelController,
-  content: PanelContent(
-    headerWidget: PanelHeaderWidget(
-      headerContent: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text(
-        'This is a SlidingPanel',
-        ),
-      ),
-      options: PanelHeaderOptions(centerTitle: true),
-    ),
-	
-    // The only REQUIRED parameter
-    panelContent: List.generate(20, (i) {
-      return ListTile(
-        title: Text('Item : ${i + 1}'),
-      );
-    }).toList(),
+              panelController: panelController,
+              content: PanelContent(
+                headerWidget: const PanelHeaderWidget(
+                  headerContent: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'This is a SlidingPanel',
+                    ),
+                  ),
+                  options: PanelHeaderOptions(centerTitle: true),
+                ),
 
-    bodyContent: Center(
-      child: RaisedButton(
-        onPressed: () {
-        panelController.collapse();
-        },
-        child: Text('Open the panel'),
-      ),
-    ),
-  ),
-  size: PanelSize(closedHeight: 500),
-  // apply snapping effect
-  snapping: PanelSnapping.enabled,
-),
+                // The only REQUIRED parameter
+                panelContent: List.generate(20, (i) {
+                  return ListTile(
+                    title: Text('Item : ${i + 1}'),
+                  );
+                }).toList(),
+
+                bodyContent: Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      panelController.collapse();
+                    },
+                    child: const Text('Open the panel'),
+                  ),
+                ),
+              ),
+              size: const PanelSize(closedHeight: 500),
+              // apply snapping effect
+              snapping: PanelSnapping.enabled,
+            ),
           ],
         ),
         bottomSheet: isEditMode

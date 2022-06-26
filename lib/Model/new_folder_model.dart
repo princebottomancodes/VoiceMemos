@@ -17,21 +17,18 @@ class FolderModel {
   }
 
   factory FolderModel.fromMap(Map<String, dynamic> map) {
-    return FolderModel(
-      title: map['title'],
-      id: map['id']
-    );
+    return FolderModel(title: map['title'], id: map['id']);
   }
 }
 
 extension ExtFolderModel on FolderModel {
   Future save() async {
-    final _db = Localstore.instance;
-    return _db.collection('folders').doc(id).set(toMap());
+    final db = Localstore.instance;
+    return db.collection('folders').doc(id).set(toMap());
   }
 
   Future delete() async {
-    final _db = Localstore.instance;
-    return _db.collection('folders').doc(id).delete();
+    final db = Localstore.instance;
+    return db.collection('folders').doc(id).delete();
   }
 }

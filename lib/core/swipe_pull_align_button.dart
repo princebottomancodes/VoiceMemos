@@ -18,10 +18,10 @@ class SwipePullAlignButton extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SwipePullAlignButtonState createState() => _SwipePullAlignButtonState();
+  SwipePullAlignButtonState createState() => SwipePullAlignButtonState();
 }
 
-class _SwipePullAlignButtonState extends State<SwipePullAlignButton>
+class SwipePullAlignButtonState extends State<SwipePullAlignButton>
     with TickerProviderStateMixin {
   bool get trailing => widget.trailing;
 
@@ -56,7 +56,7 @@ class _SwipePullAlignButtonState extends State<SwipePullAlignButton>
     super.initState();
     whenFirstAction = widget.actionIndex == 0;
     alignment = trailing ? Alignment.centerRight : Alignment.centerLeft;
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _initAnim();
       _initCompletionHandler();
     });

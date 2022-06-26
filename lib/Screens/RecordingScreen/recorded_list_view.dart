@@ -17,10 +17,10 @@ class RecordListView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RecordListViewState createState() => _RecordListViewState();
+  RecordListViewState createState() => RecordListViewState();
 }
 
-class _RecordListViewState extends State<RecordListView> {
+class RecordListViewState extends State<RecordListView> {
   late int _totalDuration;
   late int _currentDuration;
   double _completedPercentage = 0.0;
@@ -134,14 +134,15 @@ class _RecordListViewState extends State<RecordListView> {
   }
 
   Future<void> onPlay({required String filePath, required int index}) async {
-    audioPlayer.play(filePath, isLocal: true);
+    audioPlayer.play(DeviceFileSource(filePath), mode: PlayerMode.mediaPlayer);
+
     setState(() {
       _selectedIndex = index;
       _completedPercentage = 0.0;
       _isPlaying = true;
     });
 
-    audioPlayer.onPlayerCompletion.listen((_) {
+    audioPlayer.onPlayerComplete.listen((_) {
       setState(() {
         _isPlaying = false;
         _completedPercentage = 0.0;
@@ -154,7 +155,7 @@ class _RecordListViewState extends State<RecordListView> {
       });
     });
 
-    audioPlayer.onAudioPositionChanged.listen((duration) {
+    audioPlayer.onPositionChanged.listen((duration) {
       setState(() {
         _currentDuration = duration.inMicroseconds;
         _completedPercentage =

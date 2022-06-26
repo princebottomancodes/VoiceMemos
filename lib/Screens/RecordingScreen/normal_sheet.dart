@@ -34,9 +34,7 @@ class _NormalSheetState extends State<NormalSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    Container(
+    return Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
@@ -56,8 +54,7 @@ class _NormalSheetState extends State<NormalSheet> {
             icons: [
               AnimatedIconItem(
                 backgroundColor: Colors.red.shade400,
-                icon:
-                    Icon(Icons.circle, color: Colors.red.shade400, size: 50),
+                icon: Icon(Icons.circle, color: Colors.red.shade400, size: 50),
                 onPressed: () async {
                   await startRecording();
                   setState(() {});
@@ -99,10 +96,8 @@ class _NormalSheetState extends State<NormalSheet> {
       debugPrint(create.path);
     }
 
-    String filePath = Paths.recording +
-        '/' +
-        DateTime.now().millisecondsSinceEpoch.toString() +
-        '.aac';
+    String filePath =
+        '${Paths.recording}/${DateTime.now().millisecondsSinceEpoch}.aac';
 
     await recorder.startRecorder(toFile: filePath, codec: Codec.aacADTS);
   }

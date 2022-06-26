@@ -21,12 +21,12 @@ class SwipePullButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SwipePullButtonState createState() {
-    return _SwipePullButtonState();
+  SwipePullButtonState createState() {
+    return SwipePullButtonState();
   }
 }
 
-class _SwipePullButtonState extends State<SwipePullButton>
+class SwipePullButtonState extends State<SwipePullButton>
     with TickerProviderStateMixin {
   ///The cell's total offset,not button's
   late double offsetX;
@@ -65,7 +65,7 @@ class _SwipePullButtonState extends State<SwipePullButton>
     whenNestedActionShowing = false;
     whenFirstAction = widget.actionIndex == 0;
     alignment = trailing ? Alignment.centerLeft : Alignment.centerRight;
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _initAnim();
       _initCompletionHandler();
     });

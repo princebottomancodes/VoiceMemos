@@ -537,7 +537,7 @@ class SwipeActionCellState extends State<SwipeActionCell>
         if (delete) {
           SwipeActionStore.getInstance()
               .bus
-              .fire( const IgnorePointerEvent(ignore: true));
+              .fire(const IgnorePointerEvent(ignore: true));
           if (widget.firstActionWillCoverAllSpaceOnDeleting) {
             SwipeActionStore.getInstance()
                 .bus
@@ -800,38 +800,41 @@ class SwipeActionCellState extends State<SwipeActionCell>
                               : currentOffset,
                           transformHitTests: false,
                           child: editing && !editController.isAnimating
-                          ? Padding(
-                            padding:
-                                EdgeInsets.only(right: widget.editModeOffset),
-                            child: SizedBox(
-                              child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: widget.backgroundColor ??
-                                        Theme.of(context).scaffoldBackgroundColor,
+                              ? Padding(
+                                  padding: EdgeInsets.only(
+                                      right: widget.editModeOffset),
+                                  child: SizedBox(
+                                    child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: widget.backgroundColor ??
+                                              Theme.of(context)
+                                                  .scaffoldBackgroundColor,
+                                        ),
+                                        child: IgnorePointer(
+                                            ignoring:
+                                                editController.isAnimating ||
+                                                    editing ||
+                                                    currentOffset.dx.abs() > 20,
+                                            child: widget.child)),
                                   ),
-                                  child: IgnorePointer(
-                                      ignoring: editController.isAnimating ||
-                                          editing ||
-                                          currentOffset.dx.abs() > 20,
-                                      child: widget.child)),
-                            ),
-                          )
-                          : Padding(
-                            padding:
-                                const EdgeInsets.only(right: 0),
-                            child: SizedBox(
-                              child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: widget.backgroundColor ??
-                                        Theme.of(context).scaffoldBackgroundColor,
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(right: 0),
+                                  child: SizedBox(
+                                    child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: widget.backgroundColor ??
+                                              Theme.of(context)
+                                                  .scaffoldBackgroundColor,
+                                        ),
+                                        child: IgnorePointer(
+                                            ignoring:
+                                                editController.isAnimating ||
+                                                    editing ||
+                                                    currentOffset.dx.abs() > 20,
+                                            child: widget.child)),
                                   ),
-                                  child: IgnorePointer(
-                                      ignoring: editController.isAnimating ||
-                                          editing ||
-                                          currentOffset.dx.abs() > 20,
-                                      child: widget.child)),
-                            ),
-                          ),
+                                ),
                         ),
                       ),
                       currentOffset.dx == 0.0 ||
@@ -1048,7 +1051,7 @@ class __ContentWidgetState extends State<_ContentWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (mounted) widget.onLayoutUpdate(context.size!);
     });
   }
@@ -1056,7 +1059,7 @@ class __ContentWidgetState extends State<_ContentWidget> {
   @override
   void didUpdateWidget(_ContentWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (mounted) widget.onLayoutUpdate(context.size!);
     });
   }

@@ -28,17 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
   //subCollections
   //final subDB = Localstore.instance.collection('folders').doc().collection('');
 
-//Gets item by id
-//final data = await db.collection('todos').doc(id).get();
+  //Gets item by id
+  //final data = await db.collection('todos').doc(id).get();
 
-//Delete item by id
-//db.collection('todos').doc(id).delete();
+  //Delete item by id
+  //db.collection('todos').doc(id).delete();
 
-//Fetch the documents for the collection
-//final items = await db.collection('todos').get();
+  //Fetch the documents for the collection
+  //final items = await db.collection('todos').get();
 
-//Using stream
-//final stream = db.collection('todos').stream;
+  //Using stream
+  //final stream = db.collection('todos').stream;
 
   //Booleans
   bool isEditMode = false;
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget homeBody(BuildContext context) {
 
     return ListView(
-      //physics: const BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 15, right: 15),
@@ -242,6 +242,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       InkWell(
                                           child: AppIcons.folderMore,
                                           onTap: () {
+                                            //STack this view...
+
+
                                             // showPopover(
                                             //     context: myContext as BuildContext,
                                             //     bodyBuilder: (myContext) {

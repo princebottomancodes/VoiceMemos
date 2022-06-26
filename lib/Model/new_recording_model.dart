@@ -34,12 +34,12 @@ class NewRecordingModel {
 
 extension ExtNewRecordingModel on NewRecordingModel {
   Future save() async {
-    final _db = Localstore.instance;
-    return _db.collection('todos').doc(id).set(toMap());
+    final db = Localstore.instance;
+    return db.collection('todos').doc(id).set(toMap());
   }
 
   Future delete() async {
-    final _db = Localstore.instance;
-    return _db.collection('todos').doc(id).delete();
+    final db = Localstore.instance;
+    return db.collection('todos').doc(id).delete();
   }
 }
